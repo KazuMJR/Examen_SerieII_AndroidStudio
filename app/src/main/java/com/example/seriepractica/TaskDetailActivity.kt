@@ -25,6 +25,10 @@ class TaskDetailActivity : BaseActivity() {
         taskId = intent.getStringExtra(TaskContract.EXTRA_TASK_ID).orEmpty()
         binding.backButton.setOnClickListener { finish() }
         binding.returnToList.setOnClickListener { finish() }
+        binding.completeTask.setOnClickListener {
+            repository.find(taskId)?.let { repository.setCompleted(it.id, !it.completed) }
+            renderTask()
+        }
     }
 
     override fun onResume() {
@@ -40,6 +44,7 @@ class TaskDetailActivity : BaseActivity() {
             return@with
         }
         taskTitle.text = task.title
+        completeTask.setText(if (task.completed) R.string.reopen_task else R.string.complete_task)
         taskDescription.text = task.description
         taskDate.text = DateFormat.getDateTimeInstance(
             DateFormat.LONG, DateFormat.SHORT, Locale("es", "GT")

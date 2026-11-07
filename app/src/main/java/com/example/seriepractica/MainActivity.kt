@@ -18,10 +18,13 @@ import java.util.Locale
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var repository: TaskRepository
-    private val adapter = TaskAdapter { task ->
+    private val adapter = TaskAdapter(onOpen = { task ->
         startActivity(Intent(this, TaskDetailActivity::class.java)
             .putExtra(TaskContract.EXTRA_TASK_ID, task.id))
-    }
+    }, onToggle = { task ->
+        repository.setCompleted(task.id, !task.completed)
+        refresh()
+    })
     private var filter = "ALL"
     private val addTaskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK && result.data?.getStringExtra(TaskContract.EXTRA_TASK_ID) != null) {

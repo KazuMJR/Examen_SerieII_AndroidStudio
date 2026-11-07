@@ -2,7 +2,7 @@
     android:id="@+id/taskCard" android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="horizontal" android:background="@drawable/bg_card" android:foreground="?android:attr/selectableItemBackground"
     android:padding="12dp" android:layout_marginBottom="12dp" android:gravity="top" android:clickable="true" android:focusable="true">
-    <CheckBox android:id="@+id/taskCheck" android:layout_width="48dp" android:layout_height="48dp" android:buttonTint="@color/primary" android:clickable="false"/>
+    <CheckBox android:id="@+id/taskCheck" android:layout_width="48dp" android:layout_height="48dp" android:buttonTint="@color/primary"/>
     <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:paddingTop="8dp" android:layout_marginStart="4dp">
         <TextView android:id="@+id/taskTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" android:textColor="@color/ink" android:fontFamily="sans-serif-medium" android:maxLines="2" android:ellipsize="end"/>
         <TextView android:id="@+id/taskDescription" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textSize="13sp" android:textColor="@color/muted" android:maxLines="2" android:ellipsize="end"/>

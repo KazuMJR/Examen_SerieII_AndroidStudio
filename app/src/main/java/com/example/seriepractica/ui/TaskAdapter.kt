@@ -11,7 +11,10 @@ import com.example.seriepractica.R
 import com.example.seriepractica.data.Task
 import com.example.seriepractica.databinding.ItemTaskBinding
 
-class TaskAdapter(private val onOpen: (Task) -> Unit) :
+class TaskAdapter(
+    private val onOpen: (Task) -> Unit,
+    private val onToggle: (Task) -> Unit
+) :
     ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -27,6 +30,7 @@ class TaskAdapter(private val onOpen: (Task) -> Unit) :
             taskTitle.text = task.title
             taskDescription.text = task.description
             taskCheck.isChecked = task.completed
+            taskCheck.setOnClickListener { onToggle(task) }
             taskCheck.contentDescription = root.context.getString(R.string.complete_task_accessibility, task.title)
             taskTitle.paintFlags = if (task.completed) {
                 taskTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

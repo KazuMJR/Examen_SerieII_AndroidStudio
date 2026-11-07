@@ -17,7 +17,7 @@
             <TextView android:id="@+id/taskDate" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:textSize="14sp" android:textColor="@color/ink"/>
         </LinearLayout>
     </ScrollView>
-    <Button android:id="@+id/completeTask" style="@style/PrimaryButton" android:layout_width="match_parent" android:layout_height="56dp" android:text="@string/complete_task" android:layout_marginTop="12dp" android:visibility="gone"/>
+    <Button android:id="@+id/completeTask" style="@style/PrimaryButton" android:layout_width="match_parent" android:layout_height="56dp" android:text="@string/complete_task" android:layout_marginTop="12dp"/>
     <Button android:id="@+id/deleteTask" android:layout_width="match_parent" android:layout_height="56dp" android:text="@string/delete_task" android:textColor="@color/danger" android:textAllCaps="false" android:textSize="15sp" android:background="?android:attr/selectableItemBackground" android:layout_marginTop="8dp" android:visibility="gone"/>
     <Button android:id="@+id/returnToList" android:layout_width="match_parent" android:layout_height="48dp" android:text="@string/back" android:textColor="@color/muted" android:textAllCaps="false" android:textSize="14sp" android:background="?android:attr/selectableItemBackground" android:layout_marginBottom="12dp"/>
 </LinearLayout>
