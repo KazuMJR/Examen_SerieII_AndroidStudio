@@ -19,7 +19,8 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var repository: TaskRepository
     private val adapter = TaskAdapter { task ->
-        Toast.makeText(this, task.description, Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, TaskDetailActivity::class.java)
+            .putExtra(TaskContract.EXTRA_TASK_ID, task.id))
     }
     private var filter = "ALL"
     private val addTaskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

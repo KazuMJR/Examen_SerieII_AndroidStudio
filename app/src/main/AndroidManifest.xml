@@ -13,6 +13,7 @@
         android:theme="@style/Theme.SeriePractica">
         <activity android:name=".AddTaskActivity" android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".TaskDetailActivity" android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
