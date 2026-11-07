@@ -2,6 +2,7 @@ package com.example.seriepractica.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.UUID
@@ -58,7 +59,7 @@ class TaskRepository(private val preferences: SharedPreferences) {
             })
         }
         // apply updates memory immediately and persists asynchronously to disk.
-        preferences.edit().putString(TASKS_KEY, array.toString()).apply()
+        preferences.edit { putString(TASKS_KEY, array.toString()) }
     }
 
     companion object {

@@ -57,7 +57,7 @@ class TaskDetailActivity : BaseActivity() {
         completeTask.setText(if (task.completed) R.string.reopen_task else R.string.complete_task)
         taskDescription.text = task.description
         taskDate.text = DateFormat.getDateTimeInstance(
-            DateFormat.LONG, DateFormat.SHORT, Locale("es", "GT")
+            DateFormat.LONG, DateFormat.SHORT, Locale.forLanguageTag("es-GT")
         ).format(Date(task.createdAt))
         taskStatus.setText(if (task.completed) R.string.task_completed else R.string.task_pending)
         taskStatus.setBackgroundResource(if (task.completed) R.drawable.bg_completed else R.drawable.bg_pending)

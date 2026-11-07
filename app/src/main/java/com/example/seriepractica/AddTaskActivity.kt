@@ -20,8 +20,12 @@ class AddTaskActivity : BaseActivity() {
         setContentView(binding.root)
         fitSystemBars(binding.root)
         binding.descriptionCounter.text = getString(R.string.description_counter, 0)
+        binding.titleInput.doAfterTextChanged {
+            if (!it.isNullOrBlank()) binding.titleInput.error = null
+        }
         binding.descriptionInput.doAfterTextChanged {
             binding.descriptionCounter.text = getString(R.string.description_counter, it?.length ?: 0)
+            if (!it.isNullOrBlank()) binding.descriptionInput.error = null
         }
         binding.saveTask.setOnClickListener { save() }
         binding.backButton.setOnClickListener { confirmExit() }

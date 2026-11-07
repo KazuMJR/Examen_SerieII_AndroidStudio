@@ -19,7 +19,7 @@ import java.util.Locale
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var repository: TaskRepository
-    private val adapter = TaskAdapter(onOpen = { task ->
+    private val adapter: TaskAdapter = TaskAdapter(onOpen = { task ->
         startActivity(Intent(this, TaskDetailActivity::class.java)
             .putExtra(TaskContract.EXTRA_TASK_ID, task.id))
     }, onToggle = { task ->
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
         fitSystemBars(binding.root)
         repository = TaskRepository(this)
         filter = savedInstanceState?.getString("filter") ?: "ALL"
-        binding.today.text = SimpleDateFormat("d MMM", Locale("es", "GT")).format(Date())
+        binding.today.text = SimpleDateFormat("d MMM", Locale.forLanguageTag("es-GT")).format(Date())
         binding.taskList.layoutManager = LinearLayoutManager(this)
         binding.taskList.adapter = adapter
         binding.addTask.setOnClickListener {
@@ -74,7 +74,7 @@ class MainActivity : BaseActivity() {
         refresh()
     }
 
-    private fun refresh() = with(binding) {
+    private fun refresh(): Unit = with(binding) {
         val tasks = repository.all()
         val completed = tasks.count { it.completed }
         progressCount.text = getString(R.string.progress_count, completed, tasks.size)
@@ -83,7 +83,7 @@ class MainActivity : BaseActivity() {
         progressHint.text = when {
             tasks.isEmpty() -> getString(R.string.progress_empty)
             completed == tasks.size -> getString(R.string.progress_done)
-            else -> getString(R.string.progress_pending, tasks.size - completed)
+            else -> resources.getQuantityString(R.plurals.progress_pending, tasks.size - completed, tasks.size - completed)
         }
         val visibleTasks = tasks.filter {
             when (filter) {

@@ -4,8 +4,12 @@
     <string name="home_title">Un día más organizado.</string>
     <string name="home_subtitle">Paso a paso, pendiente a pendiente.</string>
     <string name="your_progress">TU PROGRESO</string>
-    <string name="progress_count">%1$d de %2$d completadas</string>
-    <string name="progress_pending">%1$d pendientes · Tú puedes con esto.</string>
+    <string name="progress_count">Completadas: %1$d de %2$d</string>
+    <plurals name="progress_pending">
+        <item quantity="one">%d pendiente · Tú puedes con esto.</item>
+        <item quantity="other">%d pendientes · Tú puedes con esto.</item>
+    </plurals>
+    <string name="brand_mark" translatable="false">✓</string>
     <string name="progress_done">Todo al día. ¡Buen trabajo!</string>
     <string name="progress_empty">Tu próximo gran día empieza con una tarea.</string>
     <string name="my_tasks">Mis tareas</string>
@@ -24,7 +28,6 @@
     <string name="task_completed">Completada</string>
     <string name="complete_task_accessibility">Cambiar estado de %1$s</string>
     <string name="delete_task_accessibility">Eliminar %1$s</string>
-    <string name="task_date">Creada el %1$s</string>
     <string name="form_eyebrow">HAZ ESPACIO PARA LO IMPORTANTE</string>
     <string name="form_subtitle">Anota lo que necesitas hacer. Nosotros lo recordamos por ti.</string>
     <string name="title_label">Título de la tarea</string>
