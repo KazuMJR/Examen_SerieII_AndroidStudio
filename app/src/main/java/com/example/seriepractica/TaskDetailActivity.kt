@@ -7,6 +7,7 @@ import com.example.seriepractica.data.TaskRepository
 import com.example.seriepractica.databinding.ActivityTaskDetailBinding
 import com.example.seriepractica.ui.BaseActivity
 import com.example.seriepractica.ui.TaskContract
+import com.example.seriepractica.ui.confirmTaskDeletion
 import java.text.DateFormat
 import java.util.Date
 import java.util.Locale
@@ -28,6 +29,15 @@ class TaskDetailActivity : BaseActivity() {
         binding.completeTask.setOnClickListener {
             repository.find(taskId)?.let { repository.setCompleted(it.id, !it.completed) }
             renderTask()
+        }
+        binding.deleteTask.setOnClickListener {
+            repository.find(taskId)?.let { task ->
+                confirmTaskDeletion(this, task) {
+                    repository.delete(task.id)
+                    Toast.makeText(this, R.string.task_deleted, Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
         }
     }
 

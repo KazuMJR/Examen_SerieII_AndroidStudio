@@ -8,5 +8,5 @@
         <TextView android:id="@+id/taskDescription" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:textSize="13sp" android:textColor="@color/muted" android:maxLines="2" android:ellipsize="end"/>
         <TextView android:id="@+id/taskStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:textSize="11sp" android:fontFamily="sans-serif-medium"/>
     </LinearLayout>
-    <ImageButton android:id="@+id/deleteTask" android:layout_width="48dp" android:layout_height="48dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_delete" android:visibility="gone" android:contentDescription="@string/delete_task"/>
+    <ImageButton android:id="@+id/deleteTask" android:layout_width="48dp" android:layout_height="48dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_delete" android:contentDescription="@string/delete_task"/>
 </LinearLayout>

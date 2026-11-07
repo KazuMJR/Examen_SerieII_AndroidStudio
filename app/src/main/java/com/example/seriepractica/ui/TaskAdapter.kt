@@ -13,7 +13,8 @@ import com.example.seriepractica.databinding.ItemTaskBinding
 
 class TaskAdapter(
     private val onOpen: (Task) -> Unit,
-    private val onToggle: (Task) -> Unit
+    private val onToggle: (Task) -> Unit,
+    private val onDelete: (Task) -> Unit
 ) :
     ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiff) {
 
@@ -31,6 +32,8 @@ class TaskAdapter(
             taskDescription.text = task.description
             taskCheck.isChecked = task.completed
             taskCheck.setOnClickListener { onToggle(task) }
+            deleteTask.contentDescription = root.context.getString(R.string.delete_task_accessibility, task.title)
+            deleteTask.setOnClickListener { onDelete(task) }
             taskCheck.contentDescription = root.context.getString(R.string.complete_task_accessibility, task.title)
             taskTitle.paintFlags = if (task.completed) {
                 taskTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

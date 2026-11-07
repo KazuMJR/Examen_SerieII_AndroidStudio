@@ -11,6 +11,7 @@ import com.example.seriepractica.databinding.ActivityMainBinding
 import com.example.seriepractica.ui.BaseActivity
 import com.example.seriepractica.ui.TaskAdapter
 import com.example.seriepractica.ui.TaskContract
+import com.example.seriepractica.ui.confirmTaskDeletion
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -24,6 +25,12 @@ class MainActivity : BaseActivity() {
     }, onToggle = { task ->
         repository.setCompleted(task.id, !task.completed)
         refresh()
+    }, onDelete = { task ->
+        confirmTaskDeletion(this, task) {
+            repository.delete(task.id)
+            refresh()
+            Toast.makeText(this, R.string.task_deleted, Toast.LENGTH_SHORT).show()
+        }
     })
     private var filter = "ALL"
     private val addTaskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
