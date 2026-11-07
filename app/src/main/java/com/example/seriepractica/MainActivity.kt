@@ -1,13 +1,16 @@
 package com.example.seriepractica
 
 import android.os.Bundle
+import android.content.Intent
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seriepractica.data.TaskRepository
 import com.example.seriepractica.databinding.ActivityMainBinding
 import com.example.seriepractica.ui.BaseActivity
 import com.example.seriepractica.ui.TaskAdapter
+import com.example.seriepractica.ui.TaskContract
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -19,6 +22,13 @@ class MainActivity : BaseActivity() {
         Toast.makeText(this, task.description, Toast.LENGTH_LONG).show()
     }
     private var filter = "ALL"
+    private val addTaskLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK && result.data?.getStringExtra(TaskContract.EXTRA_TASK_ID) != null) {
+            selectFilter("ALL")
+            binding.taskList.scrollToPosition(0)
+            Toast.makeText(this, R.string.task_saved, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +40,9 @@ class MainActivity : BaseActivity() {
         binding.today.text = SimpleDateFormat("d MMM", Locale("es", "GT")).format(Date())
         binding.taskList.layoutManager = LinearLayoutManager(this)
         binding.taskList.adapter = adapter
+        binding.addTask.setOnClickListener {
+            addTaskLauncher.launch(Intent(this, AddTaskActivity::class.java))
+        }
         binding.filterAll.setOnClickListener { selectFilter("ALL") }
         binding.filterPending.setOnClickListener { selectFilter("PENDING") }
         binding.filterCompleted.setOnClickListener { selectFilter("COMPLETED") }
